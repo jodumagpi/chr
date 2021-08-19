@@ -12,7 +12,7 @@ import torchvision.transforms as transforms
 from tqdm import tqdm
 import numpy as np
 
-from CHR.util import AveragePrecisionMeter, Warp
+from util import AveragePrecisionMeter, Warp
 
 
 class Engine(object):

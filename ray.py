@@ -9,7 +9,7 @@ import torch
 import torch.utils.data as data
 from PIL import Image
 
-from CHR import util
+import util
 
 
 object_categories =['Gun','Knife','Wrench','Pliers','Scissors']

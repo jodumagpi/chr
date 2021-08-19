@@ -3,9 +3,9 @@ import argparse
 import torch
 import torch.nn as nn
 
-from CHR.engine import MultiLabelMAPEngine
-from CHR.models import resnet101_CHR, resnet50_CHR
-from CHR.ray import XrayClassification
+from engine import MultiLabelMAPEngine
+from models import resnet101_CHR, resnet50_CHR
+from ray import XrayClassification
 from torch.nn.modules.loss import _WeightedLoss
 
 import warnings
