@@ -11,8 +11,13 @@ import torchnet as tnt
 import torchvision.transforms as transforms
 from tqdm import tqdm
 import numpy as np
+import tarfile
 
 from util import AveragePrecisionMeter, Warp
+
+def make_tarfile(output_filename, source_dir):
+    with tarfile.open(output_filename, "w:gz") as tar:
+        tar.add(source_dir, arcname=os.path.basename(source_dir))
 
 
 class Engine(object):
@@ -336,12 +341,16 @@ class Engine(object):
             if self._state('save_model_path') is not None:
                 filename_best = os.path.join(self.state['save_model_path'], filename_best)
             shutil.copyfile(filename, filename_best)
-            if self._state('save_model_path') is not None:
+    
+            #if self._state('save_model_path') is not None:
                # if self._state('filename_previous_best') is not None:
                    # os.remove(self._state('filename_previous_best'))
-                filename_best = os.path.join(self.state['save_model_path'], 'model_best_{score:.4f}.pth.tar'.format(score=state['best_score']))
-                shutil.copyfile(filename, filename_best)
-                self.state['filename_previous_best'] = filename_best
+                #filename_best = os.path.join(self.state['save_model_path'], 'model_best_{score:.4f}.pth.tar'.format(score=state['best_score']))
+                #shutil.copyfile(filename, filename_best)
+                #self.state['filename_previous_best'] = filename_best
+
+            # save to drive
+            make_tarfile(os.path.join("/content/drive/My Drive/MIKOY/PAPER 3/", "{}.tar.gz".format(self._state('save_model_path')[2:])), self._state('save_model_path'))
 
     def adjust_learning_rate(self, optimizer):
         """Sets the learning rate to the initial LR decayed by 10 every 30 epochs"""
